@@ -4,7 +4,7 @@ import './FaceRecognition.css';
 export default function FaceRecognition({ imageURL,box }) {
     return (
         <div className='center ma f4'>
-            {'FaceBox'}
+            {'feycbox'}
             <br />
             <div className='mt2 absolute'>
                 <img 

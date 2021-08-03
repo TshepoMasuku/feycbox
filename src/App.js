@@ -70,17 +70,20 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
-      fetch("http://localhost:3001/imageURL",{
+      fetch("https://feycback.herokuapp.com/imageURL",{
+      // fetch("http://localhost:3000/imageURL",{
         method:"post",
         headers:{"Content-Type": "application/json"},
         body: JSON.stringify({
           id: this.state.input
         })
-      }).then( response => response.json() )
+      })
+      .then( response => response.json() )
       .then(
         (response) => {
           if(response){
-            fetch("http://localhost:3001/image",{
+            fetch("https://feycback.herokuapp.com/image",{ 
+            // fetch("http://localhost:3000/image",{
               method:"put",
               headers:{"Content-Type": "application/json"},
               body: JSON.stringify({
@@ -93,12 +96,12 @@ class App extends React.Component {
                   Object.assign(this.state.user, {entries: picEntriesCount})
                 )
               })// catching the error | ERROR HANDLING.
-              .catch( (err) => console.log('The error was....',err) );
+              .catch( (err) => console.log('Inner error was....',err) );
           }
           this.displayFaceBox( this.calculateFaceLocation(response) )
         }
       )// catching the error.
-      .catch( (err) => console.log('The error was....',err) );
+      .catch( (err) => console.log('Outer error was....',err) );
   }
 
   onInputChange = (event) => {
