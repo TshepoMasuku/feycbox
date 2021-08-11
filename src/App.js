@@ -10,12 +10,6 @@ import Register from './components/Register/Register.js';
 import Particles from 'react-particles-js';
 import ParticlesJS from './particle-js.json';
 
-// import Clarifai from 'clarifai';
-// const app = new Clarifai.App({ 
-//   // apiKey:  process.env.API_CLARIFAI 
-//   apiKey: '3176a6426124469aaae986f2d621c227' 
-// });
-
 const initialState = {
   input: '',
   imageURL: '',
@@ -77,21 +71,21 @@ class App extends React.Component {
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
       // fetch("https://feycback.herokuapp.com/imageURL",{
-      fetch("http://localhost:3000/imageURL",{
-        method:"post",
-        headers:{"Content-Type": "application/json"},
-        body: JSON.stringify({
-          id: this.state.input
-        })
+    fetch("http://localhost:3000/imageURL",{
+      method:"post",
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify({
+        input: this.state.input
       })
-      .then( response => console.log('imageURL fetch request response', response))
+    })
       .then( response => response.json() )
+      .then( response => console.log('CLARIFAI API response is....',response) )
       .then(
         (response) => {
           if(response){
-            // fetch("https://feycback.herokuapp.com/image",{ 
-            fetch("http://localhost:3000/image",{ 
-              method:"put", 
+            // fetch("https://feycback.herokuapp.com/image",{
+            fetch("http://localhost:3000/image",{
+              method:"put",
               headers:{"Content-Type": "application/json"},
               body: JSON.stringify({
                 id: this.state.user.id
@@ -102,37 +96,13 @@ class App extends React.Component {
                 this.setState(
                   Object.assign(this.state.user, {entries: picEntriesCount})
                 )
-              })// catching the error | ERROR HANDLING.
-              .catch( (err) => console.log('image fetch error is....',err) );
+              })
+              .catch( (err) => console.log('The /image fetch -- error was....',err) );
           }
           this.displayFaceBox( this.calculateFaceLocation(response) )
         }
-      )// catching the error.
-      .catch( (err) => console.log('catching errors from imageURL fetch request....',err) );
-
-    // ----------------------------------------------------------------------------------------
-
-    // this.setState({imageURL: this.state.input});
-    // app.models
-    //   .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-    //   .then(response => {
-    //     console.log('hi', response)
-    //     if (response) {
-    //       fetch('http://localhost:3000/image', {
-    //         method: 'put',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify({
-    //           id: this.state.user.id
-    //         })
-    //       })
-    //         .then(response => response.json())
-    //         .then(count => {
-    //           this.setState(Object.assign(this.state.user, { entries: count}))
-    //         })
-    //     }
-    //     this.displayFaceBox(this.calculateFaceLocation(response))
-    //   })
-    //   .catch(err => console.log(err));
+      )
+      .catch( (err) => console.log('The /imageURL fetch -- error was....',err) );
   }
 
   onInputChange = (event) => {
