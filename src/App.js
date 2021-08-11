@@ -51,8 +51,9 @@ class App extends React.Component {
     })
   }
 
-  calculateFaceLocation = (data) => {
-    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+  calculateFaceLocation = (faceData) => {
+    // console.log('calculateFaceLocation --> responseData is....', faceData)
+    const clarifaiFace = faceData.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height = Number(image.height);
@@ -70,8 +71,8 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
-      fetch("https://feycback.herokuapp.com/imageURL",{
-    // fetch("http://localhost:3000/imageURL",{
+      // fetch("https://feycback.herokuapp.com/imageURL",{
+    fetch("http://localhost:3000/imageURL",{
       method:"post",
       headers:{"Content-Type": "application/json"},
       body: JSON.stringify({
@@ -79,12 +80,12 @@ class App extends React.Component {
       })
     })
       .then( response => response.json() )
-      .then( response => console.log('CLARIFAI API response is....',response) )
+      // .then( response => console.log('CLARIFAI API response is....',response) )
       .then(
         (response) => {
           if(response){
-            fetch("https://feycback.herokuapp.com/image",{
-            // fetch("http://localhost:3000/image",{
+            // fetch("https://feycback.herokuapp.com/image",{
+            fetch("http://localhost:3000/image",{
               method:"put",
               headers:{"Content-Type": "application/json"},
               body: JSON.stringify({
@@ -99,9 +100,8 @@ class App extends React.Component {
               })
               .catch( (err) => console.log('The /image fetch -- error was....',err) );
           }
-          this.displayFaceBox( this.calculateFaceLocation(response) )
-        }
-      )
+          this.displayFaceBox( this.calculateFaceLocation(response) );
+        })
       .catch( (err) => console.log('The /imageURL fetch -- error was....',err) );
   }
 
