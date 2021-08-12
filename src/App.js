@@ -71,8 +71,8 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
-      // fetch("https://feycback.herokuapp.com/imageURL",{
-    fetch("http://localhost:3000/imageURL",{
+    // fetch("http://localhost:3000/imageURL",{
+    fetch("https://feycback.herokuapp.com/imageURL",{
       method:"post",
       headers:{"Content-Type": "application/json"},
       body: JSON.stringify({
@@ -84,8 +84,8 @@ class App extends React.Component {
       .then(
         (response) => {
           if(response){
-            // fetch("https://feycback.herokuapp.com/image",{
-            fetch("http://localhost:3000/image",{
+            // fetch("http://localhost:3000/image",{
+            fetch("https://feycback.herokuapp.com/image",{
               method:"put",
               headers:{"Content-Type": "application/json"},
               body: JSON.stringify({
@@ -123,8 +123,8 @@ class App extends React.Component {
     const { route,imageURL,isSignedIn,box,user } = this.state;
     return (
       <div className="App">
-        <Navigation onRouteChange={this.onRouteChange} isSignedIn={isSignedIn} />
         <Particles className='particles' params={ParticlesJS} />
+        <Navigation onRouteChange={this.onRouteChange} isSignedIn={isSignedIn} />
         {route === 'signedIn'
         ? <div>
             <Logo />
