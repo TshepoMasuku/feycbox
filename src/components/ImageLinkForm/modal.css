@@ -1,0 +1,13 @@
+.customOverlay {
+    background: linear-gradient(
+        to right,
+        rgba(228, 110, 6, 0.8),
+        rgba(239, 5, 5, 0.8)
+    );
+}
+
+.customModal {
+    background: linear-gradient(to right, rgb(239, 5, 5), rgb(228, 110, 6));
+    max-width: 550px;
+    width: 100%;
+}
