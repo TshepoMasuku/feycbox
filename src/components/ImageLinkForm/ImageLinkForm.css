@@ -1,0 +1,16 @@
+@media  only screen and (max-width: 767.98px) {
+    div div {
+        flex-direction: column;
+    }
+
+    div div input {
+        width: 100% !important;
+    }
+    div div button {
+        width: 100% !important;
+    }
+
+    .react-responsive-modal-closeButton {
+        padding-inline: 25px;
+    }
+}

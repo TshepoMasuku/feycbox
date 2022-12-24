@@ -4,11 +4,15 @@ import brain from './brain.png';
 
 function Logo() {
     return (
-        <div className='logo ma4 mt0'>
+        <div className='logo ma4 mt0' style={{zIndex: 1, position: "relative"}}>
             <Tilt 
                 className='Tilt br2 shadow-2' 
                 options={{ max: 45 }} 
-                style={{ height: 100,width: 100,background: 'linear-gradient(to right, rgb(228, 110, 6), rgb(239, 5, 5))' }}
+                style={{ 
+                    height: 100,
+                    width: 100,
+                    background: 'linear-gradient(to right, rgb(228, 110, 6), rgb(239, 5, 5))' 
+                }}
             >
                 <div className='Tilt-inner pa3'>
                     <img 

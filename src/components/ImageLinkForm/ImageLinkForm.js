@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import "react-responsive-modal/styles.css";
 import './modal.css';
+import './ImageLinkForm.css';
 
 function ImageLinkForm({ onInputChange, onPictureSubmit }) {
     const [open, setOpen] = useState(false);
@@ -9,14 +10,17 @@ function ImageLinkForm({ onInputChange, onPictureSubmit }) {
     const onCloseModal = () => setOpen(false);
 
     return (
-        <div>
-            <p className='f4 black'>
+        <section>
+            <p className='f4 black' style={{zIndex: 1, position: "relative"}}>
                 {'This Magic Brain will detect faces in your pictures. Give it a try :~)'}
             </p>
             <div>
                 <div 
                     className='pa4 br3 shadow-5 ma4' 
-                    style={{ display:'flex',background: 'linear-gradient(to right, rgb(228, 110, 6), rgb(239, 5, 5))' }}
+                    style={{ 
+                        display:'flex', zIndex: 1, position: "relative",
+                        background: 'linear-gradient(to right, rgb(228, 110, 6), rgb(239, 5, 5))' 
+                    }}
                 >
                     <input 
                         className='f4 pa2 w-60 center' 
@@ -26,14 +30,14 @@ function ImageLinkForm({ onInputChange, onPictureSubmit }) {
                     />
                     <button 
                         className='w-20 grow link ph3 pv2 dib white f4'
-                        style={{ background: 'linear-gradient(to right, rgb(228, 110, 6), rgb(239, 5, 5))' }}
+                        style={{ background: 'linear-gradient(to right, rgb(228, 110, 6), rgb(239, 5, 5))'}}
                         onClick={onPictureSubmit}
                     >
                         Detect Face
                     </button>
                     <button 
                         className='w-20 grow link ph3 pv2 dib white f4'
-                        style={{ background: 'rgb(239, 5, 5)' }}
+                        style={{ background: 'rgb(239, 5, 5)'}}
                         onClick={ onOpenModal }
                     >
                         Get Images
@@ -90,7 +94,7 @@ function ImageLinkForm({ onInputChange, onPictureSubmit }) {
                     </div>
                 </Modal>            
             </div>
-        </div>
+        </section>
     )
 }
 

@@ -71,8 +71,8 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
-    // fetch("https://server-app.herokuapp.com/imageURL",{
-    fetch("http://localhost:3000/imageURL",{
+    fetch("https://feycback-api.vercel.app/imageURL",{ 
+    // fetch("http://localhost:3000/imageURL",{
       method:"post",
       headers:{"Content-Type": "application/json"},
       body: JSON.stringify({
@@ -80,12 +80,12 @@ class App extends React.Component {
       })
     })
       .then( response => response.json() )
-      // .then( response => console.log('CLARIFAI API response is....',response) )
       .then(
         (response) => {
-          if(response){
-            // fetch("https://server-app.herokuapp.com/image",{
-            fetch("http://localhost:3000/image",{
+          // console.log('CLARIFAI API response is....',response);
+          if(response !== "unable to work with API."){
+            fetch("https://feycback-api.vercel.app/image",{ 
+            // fetch("http://localhost:3000/image",{
               method:"put",
               headers:{"Content-Type": "application/json"},
               body: JSON.stringify({
@@ -98,11 +98,15 @@ class App extends React.Component {
                   Object.assign(this.state.user, {entries: picEntriesCount})
                 )
               })
-              .catch( (err) => console.log('The /image fetch -- error was....',err) );
+              .catch( (err) => {
+                console.log('The /image fetch -- error was....',err) 
+              });
           }
           this.displayFaceBox( this.calculateFaceLocation(response) );
         })
-      .catch( (err) => console.log('The /imageURL fetch -- error was....',err) );
+      .catch( (err) => {
+        console.log('The /imageURL fetch -- error was....',err);
+      });
   }
 
   onInputChange = (event) => {

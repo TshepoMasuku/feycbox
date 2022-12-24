@@ -1,4 +1,15 @@
-.bounding-box {
+.faceRecognition {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.faceRecognition img {
+    max-width: 1200px !important;
+}
+
+.bounding_box {
     position: absolute;
     box-shadow: 0 0 0 3px #149df2 inset;
     cursor: pointer;

@@ -30,8 +30,8 @@ class Register extends React.Component {
     }
     onSubmitRegister(){
         const { name,surname,email,password } = this.state;
-        // fetch("https://server-app.herokuapp.com/register",{ 
-        fetch("http://localhost:3000/register",{
+        fetch("https://feycback-api.vercel.app/register",{ 
+        // fetch("http://localhost:3000/register",{
             method: "post",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
@@ -54,7 +54,7 @@ class Register extends React.Component {
         return (
             <div>
                 <article className='br3 ba b--black-10 mv2 w-100 w-50-m w-25-l mw6 shadow-5 center' >
-                    <main className="pa4 black-80">
+                    <main className="pa4 black-80" style={{zIndex: 1}}>
                         <div className="measure">
                             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                                 <legend className="f1 fw6 ph0 mh0">Register</legend>

@@ -3,21 +3,23 @@ import './FaceRecognition.css';
 
 export default function FaceRecognition({ imageURL,box }) {
     return (
-        <div className='center ma f4'>
-            {'feycbox'}
-            <br />
-            <div className='mt2 absolute'>
+        <div className='center ma f4 faceRecognition'>
+            <p>feycbox</p>
+            <div className='mt2' style={{position: "relative"}}>
                 <img 
                     id={'inputimage'} 
-                    className='br4 shadow-5 ma3' 
+                    className='br4 shadow-5 ma3 faceImage' 
                     src={imageURL} 
                     alt='' 
                     height='auto' 
-                    width='500px'
+                    width='80%'
                 />
                 <div
-                    className='bounding-box'
-                    style={{ top:box.topRow, right:box.rightCol, bottom:box.bottomRow, left:box.leftCol, }}
+                    className='bounding_box'
+                    style={{ 
+                        top:box.topRow, right:box.rightCol, 
+                        bottom:box.bottomRow, left:box.leftCol 
+                    }}
                 ></div>
             </div>            
         </div>
