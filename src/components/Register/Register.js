@@ -30,8 +30,7 @@ class Register extends React.Component {
     }
     onSubmitRegister(){
         const { name,surname,email,password } = this.state;
-        fetch("https://feycback-api.vercel.app/register",{ 
-        // fetch("http://localhost:3000/register",{
+        fetch(`${process.env.REACT_APP_API_URL}register`, {
             method: "post",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({

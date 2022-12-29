@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import ParticlesCanvas from "./components/tsParticles/ParticlesCanvas"; 
 import Navigation from './components/Navigation/Navigation.js';
 import Logo from './components/Logo/Logo.js';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js';
@@ -7,8 +7,7 @@ import Rank from './components/Rank/Rank.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
 import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
-import Particles from 'react-particles-js';
-import ParticlesJS from './particle-js.json';
+import './App.css';
 
 const initialState = {
   input: '',
@@ -71,8 +70,7 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
-    fetch("https://feycback-api.vercel.app/imageURL",{ 
-    // fetch("http://localhost:3000/imageURL",{
+    fetch(`${process.env.REACT_APP_API_URL}imageURL`, {
       method:"post",
       headers:{"Content-Type": "application/json"},
       body: JSON.stringify({
@@ -84,8 +82,7 @@ class App extends React.Component {
         (response) => {
           // console.log('CLARIFAI API response is....',response);
           if(response !== "unable to work with API."){
-            fetch("https://feycback-api.vercel.app/image",{ 
-            // fetch("http://localhost:3000/image",{
+            fetch(`${process.env.REACT_APP_API_URL}image`, {
               method:"put",
               headers:{"Content-Type": "application/json"},
               body: JSON.stringify({
@@ -127,7 +124,7 @@ class App extends React.Component {
     const { route,imageURL,isSignedIn,box,user } = this.state;
     return (
       <div className="App">
-        <Particles className='particles' params={ParticlesJS} />
+        <ParticlesCanvas />
         <Navigation onRouteChange={this.onRouteChange} isSignedIn={isSignedIn} />
         {route === 'signedIn'
         ? <div>
