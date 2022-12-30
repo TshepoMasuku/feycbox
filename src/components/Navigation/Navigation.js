@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from "../Logo/Logo";
+import "./Navigation.css";
 
 function Navigation({ onRouteChange, isSignedIn }) {
     if(isSignedIn){

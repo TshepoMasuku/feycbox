@@ -1,0 +1,9 @@
+@media  only screen and (max-width: 444px) {
+    header {
+        flex-direction: column-reverse;
+    }
+
+    nav p {
+        font-size: 1rem;
+    }
+}
