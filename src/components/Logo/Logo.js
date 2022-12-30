@@ -1,24 +1,23 @@
 import React from 'react'
-import Tilt from 'react-tilt';
+import Tilt from 'react-parallax-tilt';
 import brain from './brain.png';
 
 function Logo() {
     return (
-        <div className='logo ma4 mt0' style={{zIndex: 1, position: "relative"}}>
+        <div style={{margin: "2rem", zIndex: 1, position: "relative"}}>
             <Tilt 
-                className='Tilt br2 shadow-2' 
-                options={{ max: 45 }} 
+                className='br2 shadow-2' 
+                scale={1.11} transitionSpeed={2500}
                 style={{ 
-                    height: 100,
-                    width: 100,
+                    height: "6rem",
+                    width: "6rem",
                     background: 'linear-gradient(to right, rgb(228, 110, 6), rgb(239, 5, 5))' 
                 }}
             >
-                <div className='Tilt-inner pa3'>
+                <div className='pa3'>
                     <img 
                         alt="LOGO" 
                         src={brain} 
-                        style={{ paddingTop: '2px' }}
                     />
                 </div>
             </Tilt>

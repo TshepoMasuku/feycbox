@@ -1,7 +1,6 @@
 import React from 'react';
 import ParticlesCanvas from "./components/tsParticles/ParticlesCanvas"; 
 import Navigation from './components/Navigation/Navigation.js';
-import Logo from './components/Logo/Logo.js';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js';
 import Rank from './components/Rank/Rank.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
@@ -70,9 +69,12 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
-    fetch(`${process.env.REACT_APP_API_URL}imageURL`, {
+    fetch(process.env.REACT_APP_API_URL+"/imageURL", {  
       method:"post",
-      headers:{"Content-Type": "application/json"},
+      headers:{
+        "Content-Type": "application/json", 
+        "Accept": "application/json"
+      },
       body: JSON.stringify({
         input: this.state.input
       })
@@ -82,9 +84,12 @@ class App extends React.Component {
         (response) => {
           // console.log('CLARIFAI API response is....',response);
           if(response !== "unable to work with API."){
-            fetch(`${process.env.REACT_APP_API_URL}image`, {
+            fetch(process.env.REACT_APP_API_URL+"/image", {  
               method:"put",
-              headers:{"Content-Type": "application/json"},
+              headers:{
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+              },
               body: JSON.stringify({
                 id: this.state.user.id
               })
@@ -128,7 +133,6 @@ class App extends React.Component {
         <Navigation onRouteChange={this.onRouteChange} isSignedIn={isSignedIn} />
         {route === 'signedIn'
         ? <div>
-            <Logo />
             <Rank name={user.name} surname={user.surname} entries={user.entries} />
             <ImageLinkForm onInputChange={this.onInputChange} onPictureSubmit={this.onPictureSubmit} />
             <FaceRecognition box={box} imageURL={imageURL} />
