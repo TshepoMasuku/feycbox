@@ -8,6 +8,12 @@ import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
 import './App.css';
 
+const BASE_API_URL = 
+  "https://feycback-api.vercel.app" 
+  ||  
+  "http://localhost:3333"  
+;
+
 const initialState = {
   input: '',
   imageURL: '',
@@ -69,11 +75,11 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({imageURL: this.state.input})
-    fetch(process.env.REACT_APP_API_URL+"/imageURL", {  
+    fetch(BASE_API_URL+"/imageURL", { 
       method:"post",
       headers:{
         "Content-Type": "application/json", 
-        "Accept": "application/json"
+        "Accept": "application/json" 
       },
       body: JSON.stringify({
         input: this.state.input
@@ -84,11 +90,11 @@ class App extends React.Component {
         (response) => {
           // console.log('CLARIFAI API response is....',response);
           if(response !== "unable to work with API."){
-            fetch(process.env.REACT_APP_API_URL+"/image", {  
+            fetch(BASE_API_URL+"/image", {  
               method:"put",
               headers:{
                 "Content-Type": "application/json", 
-                "Accept": "application/json"
+                "Accept": "application/json" 
               },
               body: JSON.stringify({
                 id: this.state.user.id

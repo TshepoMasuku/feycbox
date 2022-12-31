@@ -1,5 +1,11 @@
 import React from 'react';
 
+const BASE_API_URL = 
+    "https://feycback-api.vercel.app" 
+    ||  
+    "http://localhost:3333" 
+;
+
 class Register extends React.Component {
     constructor(props){
         super(props);
@@ -28,9 +34,9 @@ class Register extends React.Component {
     onPasswordChange(event){
         this.setState({password: event.target.value})
     }
-    onSubmitRegister(){
+    onSubmitRegister(){ 
         const { name,surname,email,password } = this.state;
-        fetch(process.env.REACT_APP_API_URL+"/register", {
+        fetch(BASE_API_URL+"/register", {
             method: "post",
             headers: {
                 "Content-Type": "application/json", 
@@ -93,7 +99,7 @@ class Register extends React.Component {
                                     />
                                 </div>
                             </fieldset>
-                            <div className="">
+                            <div>
                                 <input 
                                     type="submit" value="register" 
                                     className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
