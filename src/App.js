@@ -6,13 +6,8 @@ import Rank from './components/Rank/Rank.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
 import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
+import BASE_API_URL from './api-base_url';
 import './App.css';
-
-const BASE_API_URL = 
-  "https://feycback-api.vercel.app" 
-  || 
-  "http://localhost:3001" 
-;
 
 const initialState = {
   input: '',

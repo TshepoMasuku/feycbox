@@ -1,10 +1,5 @@
 import React from 'react';
-
-const BASE_API_URL = 
-    "https://feycback-api.vercel.app" 
-    || 
-    "http://localhost:3001" 
-;
+import BASE_API_URL from '../../api-base_url';
 
 class Register extends React.Component {
     constructor(props){
