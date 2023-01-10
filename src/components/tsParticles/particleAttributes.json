@@ -3,7 +3,7 @@
     "interactivity": {
         "events": {
             "onClick": {
-                "enable": true,
+                "enable": false,
                 "mode": "push"
             },
             "onHover": {
@@ -43,7 +43,7 @@
                 "default": "bounce"
             },
             "random": false,
-            "speed": 2,
+            "speed": 1,
             "straight": false
         },
         "number": {
@@ -51,7 +51,7 @@
                 "enable": true,
                 "area": 800
             },
-            "value": 200
+            "value": 222
         },
         "opacity": {
             "value": 0.5
