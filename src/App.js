@@ -97,9 +97,8 @@ class App extends React.Component {
             })
               .then(res => res.json())
               .then(picEntriesCount => {
-                this.setState(
-                  Object.assign(this.state.user, {entries: picEntriesCount})
-                )
+                // this.setState( Object.assign(this.state.user, {entries: picEntriesCount.entries}) );
+                this.setState( Object.assign(this.state.user, picEntriesCount) );
               })
               .catch( (err) => {
                 console.log('The /image fetch -- error was....',err) 
